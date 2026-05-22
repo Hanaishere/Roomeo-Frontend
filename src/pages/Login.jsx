@@ -14,7 +14,7 @@ export default function Login() {
     setLoading(true)
     setError('')
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, form)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, form)
       localStorage.setItem('token', res.data.token)
       navigate('/')
     } catch (e) {
