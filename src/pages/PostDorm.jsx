@@ -21,7 +21,7 @@ export default function PostDorm() {
     setLoading(true)
     setError('')
     try {
-      await axios.post('http://localhost:8080/api/dorms', 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/dorms`, 
         { ...form, price: parseFloat(form.price) },
         { headers: { Authorization: `Bearer ${token}` } }
       )

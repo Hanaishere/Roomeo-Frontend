@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './Home.css'
 
-const API = 'http://localhost:8080/api/dorms'
+const API = `${import.meta.env.VITE_API_URL}/api/dorms`
 
 export default function Home() {
   const [dorms, setDorms] = useState([])

@@ -14,7 +14,7 @@ export default function Register() {
     setLoading(true)
     setError('')
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/register', form)
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, form)
       localStorage.setItem('token', res.data.token)
       navigate('/')
     } catch (e) {
