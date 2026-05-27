@@ -11,6 +11,8 @@ export default function Home() {
   const [type, setType] = useState('')
   const [minPrice, setMinPrice] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
+  const [name, setName] = useState('')
+
 
   useEffect(() => { fetchDorms() }, [])
 
@@ -30,6 +32,7 @@ export default function Home() {
     try {
       let res
       if (city) res = await axios.get(`${API}/search?city=${city}`)
+      else if (name) res = await axios.get(`${API}/name?name=${name}`)
       else if (type) res = await axios.get(`${API}/type?type=${type}`)
       else if (minPrice && maxPrice) res = await axios.get(`${API}/price?min=${minPrice}&max=${maxPrice}`)
       else res = await axios.get(API)
@@ -41,7 +44,7 @@ export default function Home() {
   }
 
   const handleReset = () => {
-    setCity(''); setType(''); setMinPrice(''); setMaxPrice('')
+    setCity(''); setType(''); setMinPrice(''); setMaxPrice(''); setName('')
     fetchDorms()
   }
 
@@ -55,6 +58,7 @@ export default function Home() {
 
       <div className="search-bar">
         <input className="search-input" placeholder="City (e.g. Delhi, Mumbai)" value={city} onChange={e => setCity(e.target.value)} />
+        <input  className="search-input" placeholder="Search by name..."  value={name} onChange={e => setName(e.target.value)} />
         <select className="search-select" value={type} onChange={e => setType(e.target.value)}>
           <option value="">All Types</option>
           <option value="PG">PG</option>
